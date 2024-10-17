@@ -1,0 +1,22 @@
+sorular_ve_cevaplar = [
+    ("Türkiye'nin başkenti neresidir?", ["İstanbul", "Ankara", "İzmir"], "Ankara"),
+    ("En büyük gezegen hangisidir?", ["Mars", "Dünya", "Jüpiter"], "Jüpiter"),
+    ("Python programlama dili hangi yılda çıktı?", ["1989", "1991", "2000"], "1991"),
+    ("Dünya'nın uydusu nedir?", ["Güneş", "Ay", "Venüs"], "Ay"),
+    ("Hangi kıta en büyüktür?", ["Asya", "Avrupa", "Afrika"], "Asya"),
+    ("Elektron yükü nedir?", ["Pozitif", "Negatif", "Nötr"], "Negatif"),
+    ("En küçük asal sayı nedir?", ["1", "2", "3"], "2"),
+    ("Dünyanın en derin noktası neresidir?", ["Everest", "Mariana Çukuru", "Sahara"], "Mariana Çukuru"),
+    ("Fotosentez işlemi hangi canlı tarafından yapılır?", ["Hayvan", "Mantar", "Bitki"], "Bitki"),
+    ("Dünya'nın en yüksek dağı hangisidir?", ["Everest", "K2", "Elbrus"], "Everest"),
+    ("İnterneti kim icat etti?", ["Tim Berners-Lee", "Bill Gates", "Steve Jobs"], "Tim Berners-Lee"),
+    ("En hızlı kara hayvanı hangisidir?", ["Çita", "Aslan", "Kaplan"], "Çita"),
+    ("Güneş sistemi kaç gezegene sahiptir?", ["7", "8", "9"], "8"),
+    ("Su kaç derecede donar?", ["0", "10", "100"], "0"),
+    ("Einstein hangi teoriyi geliştirdi?", ["Görelilik Teorisi", "Kuanta Teorisi", "Çekim Teorisi"], "Görelilik Teorisi"),
+    ("En çok kullanılan programlama dili hangisidir?", ["JavaScript", "Python", "Java"], "JavaScript"),
+    ("Hangi ülkenin bayrağı yarısı beyaz ve yarısı kırmızıdır?", ["Fas", "Yemen", "Katar"], "Katar"),
+    ("En çok konuşulan dil hangisidir?", ["İngilizce", "Çince", "İspanyolca"], "Çince"),
+    ("Dünyanın en büyük okyanusu hangisidir?", ["Pasifik", "Atlantik", "Hint"], "Pasifik"),
+    ("Dünya Günü hangi tarihte kutlanır?", ["22 Nisan", "1 Ocak", "15 Ağustos"], "22 Nisan")
+]
