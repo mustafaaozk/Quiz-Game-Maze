@@ -11,13 +11,14 @@ def veritabani_baglanti():
                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
                 kullanici_adi TEXT, 
                 dogru_sayisi INTEGER, 
-                yanlis_sayisi INTEGER)''')
+                yanlis_sayisi INTEGER,
+                bos_sayisi INTEGER)''')
     conn.commit()
     conn.close()
 
 # Kullanıcı ismini al ve oyunu başlat
 def oyunu_baslat():
-    kullanici_adi = entry_adi.get()
+    kullanici_adi = entry_adi.get().strip()
     
     if kullanici_adi == "":
         messagebox.showwarning("Uyarı", "Lütfen isminizi girin!")
@@ -26,7 +27,6 @@ def oyunu_baslat():
             f.write(kullanici_adi)
         window.quit()
         subprocess.Popen(["python", "main.py"])
-        
 
 # Veritabanını gösteren bir pencere aç
 def veritabani_goster():
@@ -42,28 +42,34 @@ def veritabani_goster():
     result_window = tk.Toplevel(window)
     result_window.title("Veritabanı Sonuçları")
     
-    text_area = tk.Text(result_window, width=50, height=20)
+    text_area = tk.Text(result_window, width=60, height=10)
     text_area.pack()
+
+    # Kaydırma çubuğu ekleyin
+    scrollbar = tk.Scrollbar(result_window, command=text_area.yview)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+    text_area['yscrollcommand'] = scrollbar.set
+    
     if not sonuclar:  
         sonuc_yok = tk.Label(result_window, text="Kayıt Bulunamadı", font=("Verdana", 16, "roman"), width=20, height=2)
-        sonuc_yok.pack(pady=10)
+        sonuc_yok.pack(pady=5)
     else:
         for sonuc in sonuclar:
-            text_area.insert(tk.END, f"Kullanıcı: {sonuc[1]}, Doğru: {sonuc[2]}, Yanlış: {sonuc[3]}\n")
+            text_area.insert(tk.END, f"Kullanıcı: {sonuc[1]}, Doğru: {sonuc[2]}, Yanlış: {sonuc[3]}, Bos: {sonuc[4]}\n")
 
 window = tk.Tk()
 window.title("Labirent Quiz Oyunu - Giriş")
 
-label_adi = tk.Label(window, text="Öğrenci Adı",font=("Verdana", 16, "roman"), width=20, height=2)
+label_adi = tk.Label(window, text="Öğrenci Adı", font=("Verdana", 16, "roman"), width=20, height=2)
 label_adi.pack(pady=10)
 
-entry_adi = tk.Entry(window,font=("Arial", 14), width=25)
+entry_adi = tk.Entry(window, font=("Arial", 14), width=25)
 entry_adi.pack(pady=10)
 
-btn_basla = tk.Button(window, text="Oyuna Başla",width=15, height=4, command=oyunu_baslat)
+btn_basla = tk.Button(window, text="Oyuna Başla", width=15, height=4, command=oyunu_baslat)
 btn_basla.pack(pady=10)
 
-btn_veritabani = tk.Button(window, text="Veritabanını Göster",width=15, height=2, command=veritabani_goster)
+btn_veritabani = tk.Button(window, text="Veritabanını Göster", width=15, height=2, command=veritabani_goster)
 btn_veritabani.pack(pady=10)
 
 window.geometry("500x300")
