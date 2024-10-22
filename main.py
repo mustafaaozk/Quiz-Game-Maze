@@ -113,29 +113,39 @@ for index, (timsah_x, timsah_y) in enumerate(timsah_koordinatlari):
         canvas.create_image(timsah_x, timsah_y, image=timsah_img, anchor=tk.NW)
 
 # Karakterin her doğru cevap sonrası gideceği koordinatlar listesi
-
+odul_x = 700
+odul_y = 400
+canvas.create_image(odul_x, odul_y, image=odul_img, anchor=tk.NW)
 arry_hareket = [
-    (2, 15),
-    (2, 130),
-    (10, 220),
-    (80, 310),
-    (48, 400),
-    (250, 400),
-    (300, 320),
-    (360, 270),
+    (2, 15),#start
+    (2, 130),#1
+    (10, 220),#2
+    (80, 310),#3
+    (48, 400),#4
+    (250, 400),#5
+    (300, 320),#6
+    (360, 270),#7
     (350, 145),
-    (270, 45)
+    (270, 45),
+    (450,45),
+    (710,45),
+    (710,135),
+    (640,135),
+    (640,320),
+    (600,420),
+    (odul_x,odul_y)
 ]
 
 arry=[
-    [(100, 15),(170, 15), (170, 120), (120, 100)],
-    [(2,15),(100, 15),(170, 15), (170, 120), (120, 100)],
-    [(10, 220),(2,15) ,(2, 130), (100, 15), (170, 15), (170, 120), (120, 100)]   
+    [(100, 15),(170, 15), (170, 120), (120, 100)],#1.
+    [(2,15),(100, 15),(170, 15), (170, 120), (120, 100)],#2
+    [(2, 130),(2,15) ,(2, 130), (100, 15), (170, 15), (170, 120), (120, 100)],  #3
+    [(168, 310),(170, 220,),(260, 217)],#4
+    [(80, 310),(168, 310),(170, 220),(260, 217)],
+    [(48, 400),(80, 310),(168, 310),(170, 220,),(260, 217)],#6
+    [(350, 350),(350, 425),(475,420)],
+    [(350, 350),(350, 425),(475,420)]
 ]
-
-odul_x = 2
-odul_y = 130
-canvas.create_image(odul_x, odul_y, image=odul_img, anchor=tk.NW)
 
 point_control =0
 check_point = 0
@@ -144,53 +154,45 @@ hedef_koordinat=(0,0)
 def karakteri_hareket_et(dogru_mu):
     global dogru_sayac, yanlis_sayac, check_point, point_control, hedef_koordinat, cp2
 
-    # Eğer cevap doğruysa
     if dogru_mu:
-        if dogru_mu and hedef_koordinat == arry[check_point-2]:
-                check_point-=1
-                hedef_koordinat = arry[check_point][cp2]
-                animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1]) 
-        if dogru_sayac and point_control <= 1:  
+        if point_control < 1:
+            # Move to the next point in the arry_hareket
             check_point += 1
-            hedef_koordinat = arry_hareket[check_point]  # Doğru cevap için doğru indeksi al
-            print(f"hedef: {hedef_koordinat[0], hedef_koordinat[1]}")
-            animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1]) 
+            hedef_koordinat = arry_hareket[check_point]  # Set the target coordinates for the animation
+            animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1])
             point_control = 0
-            cp2 = 0  
-            print("Doğru hareket")
-        elif dogru_mu and cp2 > 0:  # Move back to the previous point if cp2 is greater than zero
+            cp2 = 0
+        elif cp2 > 0:
             cp2 -= 1
-            point_control-=1
+            point_control -= 1
             hedef_koordinat = arry[check_point][cp2]
             animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1])
-            print("Önceki doğru hareket")
-            
-        
+        elif point_control==1:
+            cp2 = len(arry[check_point]) - 1  # Set cp2 to the last position in the previous arry
+            hedef_koordinat = arry_hareket[check_point]
+            animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1])
+            cp2=0
+            point_control=0
+            point_control-=1
     else:
-        # Yanlış cevap durumunda karakter hareket etsin
-        if point_control < len(arry[check_point]):  # Hareket sınırını kontrol et
+        # Handle incorrect answer by moving within the current array
+        if point_control < len(arry[check_point]):
             hedef_koordinat = arry[check_point][point_control]
-            animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1])  
-            point_control += 1  # Yanlış hareket için artır
+            animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1])
+            point_control += 1
             cp2 = point_control - 1
-            print("Yanlış hareket")
 
-    # Karakter bir timsaha yaklaştı mı kontrol et
+    # Check if the character has reached a crocodile
     if timsah_yaklasti_mi(hedef_koordinat):
-        messagebox.showinfo("Game Over!", "Karakter bir timsaha yaklaştı! Oyun bitti.")
+        messagebox.showinfo("Oyun Bitti!", "Karakter bir timsaha yaklaştı! Oyun bitti.")
         window.quit()
         save_database(dogru_sayac, yanlis_sayac, bos_sayısı)
-
-    print(f"Check Point: {check_point}, Point Control: {point_control}, CP2: {cp2}, Hedef: {hedef_koordinat[0], hedef_koordinat[1]}")
-
-    
-
-    # Karakter bir timsaha yaklaştı mı kontrol et
-    if timsah_yaklasti_mi(hedef_koordinat):
-        messagebox.showinfo("Game Over!", "Karakter bir timsaha yaklaştı! Oyun bitti.")
+    if odul_yaklasti_mi(hedef_koordinat):
+        messagebox.showinfo("Oyun Bitti!", "Karakterin ödüle yaklaştı! Oyun bitti")
         window.quit()
         save_database(dogru_sayac, yanlis_sayac, bos_sayısı)
-
+        subprocess.Popen(["python", "son_odul.py"])
+    print(f"{hedef_koordinat[0],hedef_koordinat[1]}")
 def cevabi_kontrol_et():
     global dogru_sayac, yanlis_sayac, soru_indeks, bos_sayısı  # Gerekli değişkenleri tanımla
     secilen_cevap = cevap_var.get()
@@ -250,8 +252,9 @@ def animasyon_hareketi(canvas, obj, hedef_x, hedef_y, adim=5):
     x, y = canvas.coords(obj)
 
     if abs(hedef_x - x) > adim or abs(hedef_y - y) > adim:  # Hedefe ulaşılmadıysa
-        x_fark = hedef_x - x
         y_fark = hedef_y - y
+        x_fark = hedef_x - x
+        
         x_adim = adim if x_fark > 0 else -adim
         y_adim = adim if y_fark > 0 else -adim
 
