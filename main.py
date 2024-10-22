@@ -129,12 +129,12 @@ arry_hareket = [
 
 arry=[
     [(100, 15),(170, 15), (170, 120), (120, 100)],
-    [(2,15),(2, 130),(170, 15), (170, 120), (120, 100)],
+    [(2,15),(100, 15),(170, 15), (170, 120), (120, 100)],
     [(10, 220),(2,15) ,(2, 130), (100, 15), (170, 15), (170, 120), (120, 100)]   
 ]
 
-odul_x = 170
-odul_y = 120
+odul_x = 2
+odul_y = 130
 canvas.create_image(odul_x, odul_y, image=odul_img, anchor=tk.NW)
 
 point_control =0
@@ -145,21 +145,27 @@ def karakteri_hareket_et(dogru_mu):
     global dogru_sayac, yanlis_sayac, check_point, point_control, hedef_koordinat, cp2
 
     # Eğer cevap doğruysa
-    if dogru_mu:  
-        if dogru_sayac and point_control < 1:  
+    if dogru_mu:
+        if dogru_mu and hedef_koordinat == arry[check_point-2]:
+                check_point-=1
+                hedef_koordinat = arry[check_point][cp2]
+                animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1]) 
+        if dogru_sayac and point_control <= 1:  
             check_point += 1
             hedef_koordinat = arry_hareket[check_point]  # Doğru cevap için doğru indeksi al
             print(f"hedef: {hedef_koordinat[0], hedef_koordinat[1]}")
             animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1]) 
             point_control = 0
-            cp2 = 0  # Reset cp2 to ensure the next movement starts fresh
+            cp2 = 0  
             print("Doğru hareket")
-        elif cp2 > 0:  # Move back to the previous point if cp2 is greater than zero
+        elif dogru_mu and cp2 > 0:  # Move back to the previous point if cp2 is greater than zero
             cp2 -= 1
             point_control-=1
             hedef_koordinat = arry[check_point][cp2]
             animasyon_hareketi(canvas, karakter, hedef_koordinat[0], hedef_koordinat[1])
             print("Önceki doğru hareket")
+            
+        
     else:
         # Yanlış cevap durumunda karakter hareket etsin
         if point_control < len(arry[check_point]):  # Hareket sınırını kontrol et
@@ -184,8 +190,6 @@ def karakteri_hareket_et(dogru_mu):
         messagebox.showinfo("Game Over!", "Karakter bir timsaha yaklaştı! Oyun bitti.")
         window.quit()
         save_database(dogru_sayac, yanlis_sayac, bos_sayısı)
-
-    print(f"check:{check_point}, pointyanlış:{point_control}cp2:{cp2} hedef:{hedef_koordinat[0], hedef_koordinat[1]}")
 
 def cevabi_kontrol_et():
     global dogru_sayac, yanlis_sayac, soru_indeks, bos_sayısı  # Gerekli değişkenleri tanımla
