@@ -48,7 +48,7 @@ def veritabani_goster():
 
     # Sonuçları yeni bir pencerede göster
     result_window = tk.Toplevel(window)
-    result_window.title("En İyi 10 Kullanıcı")
+    result_window.title("En İyi 10")
     result_window.config(bg=arka_plan_renk,bd=-1)
     text_area = tk.Text(result_window, width=60, height=10,bd=-1,bg=arka_plan_renk)
     text_area.pack()
