@@ -33,7 +33,7 @@ def oyunu_baslat():
         with open("Asset/Database/kullanici.txt", "w") as f:
             f.write(kullanici_adi)
         window.quit()
-        subprocess.Popen(["Asset/Library/main.exe"])
+        subprocess.Popen(["python","Asset/Library/main.py"])
 
 # Veritabanını gösteren bir pencere aç
 def veritabani_goster():

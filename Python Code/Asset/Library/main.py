@@ -196,9 +196,9 @@ def karakteri_hareket_et(dogru_mu):
         os.remove(dosya_yolu)
     if odul_yaklasti_mi(hedef_koordinat):
         messagebox.showinfo("Oyun Bitti!", "Karakterin ödüle yaklaştı! Oyun bitti")
+        subprocess.Popen(["python","son_odul.py"])
         window.quit()
         save_database(dogru_sayac, yanlis_sayac, bos_sayısı)
-        subprocess.Popen(["Asset/Library/son_odul.exe"])
 
     print(f"check:{check_point},point:{point_control},{hedef_koordinat[0],hedef_koordinat[1]}")
 

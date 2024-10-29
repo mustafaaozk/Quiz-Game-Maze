@@ -52,20 +52,20 @@ sorular_ve_cevaplar = [
      "Ünlem", ["Hey", "Hey!"]),  
 
     ("Aşağıdaki sözcüklerden hangisinde zaman zarfında kullanılmıştır?", 
-     ["Yarın İstanbul'a gidecek.", "Bu yaz çok çalıştılar.", "Niçin söylediklerimi dinlemiyorsunuz?", "Sessizce yürüdüler."], 
+     ["Yarın İstanbul'a gidecek.", "Hiç durmadan çalıştılar.", "Niçin söylediklerimi dinlemiyorsunuz?", "Sessizce yürüdüler."], 
      "Yarın İstanbul'a gidecek.", []),  
 
     ("“Okula giderken yoluma koyun sürüsü çıktı.” \n\nCümlesinde altı çizili sözcükte hangi isim türü kullanılmıştır?", 
      ["Bağlaç", "Ünlem", "İsim", "Eylem"], 
-     "Eylem", ["sürüsü"]),  
+     "İsim", ["sürüsü"]),  
 
     ("“Seni çok seviyorum.”\n\nCümlesindeki altı çizili sözcüğün türü nedir?", 
      ["İsim", "Ünlem", "Bağlaç", "Eylem"], 
      "Eylem", ["seviyorum"]),
 
     ("“Tahta merdivenleri hızla çıktım.” \n\nCümlesindeki altı çizili sözcükler sırasıyla hangi şıkta doğru verilmiştir?", 
-     ["Fiil-sıfat", "Sıfat-sıfat", "Zarf-sıfat", "İsim-zarf"], 
-     "İsim-zarf", ["Tahta", "hızla"]),  
+     ["Fiil-sıfat", "Sıfat-sıfat", "Zarf-sıfat", "Sıfat-Zarf"], 
+     "Sıfat-Zarf", ["Tahta", "hızla"]),  
 
     ("“Çağlar çok güzel bir hediye almıştı.” \n\nCümlesindeki altı çizili sözcükler sırasıyla hangi şıkta doğru verilmiştir?", 
      ["Zarf- sıfat-sıfat-isim", "Sıfat-sıfat-sıfat-isim", "Sıfat-zarf-sıfat-isim", "Zarf-zarf-isim-sıfat"], 
@@ -129,7 +129,7 @@ sorular_ve_cevaplar = [
 
     ("“Kınamazlar güzel sevse yiğidi,\n güzel sevmek koç yiğide ar değil.”\n\nKaracaoğlan’a ait olan yukarıdaki dizelerde “güzel” kelimesinin görevi nedir?", 
      ["İsim", "Sıfat", "Zarf", "Edat"], 
-     "Zarf", ["“güzel”"]),
+     "İsim", ["“güzel”"]),
 
     ("“Geniş kar ayakkabıları giymiş bir adam yürüyordu. Zorlu yaşam şartları bu adamı yormuştu.”\n\nYukarıdaki paragrafta aşağıdaki sıfat türlerinden hangisine örnek verilmemiştir?", 
      ["Belgisiz sıfat", "Niteleme sıfatı", "İşaret sıfatı", "Soru sıfatı"], 
