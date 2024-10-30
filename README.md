@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="Asset/icon/game.jpg" alt="Banner" width="300" height="300">
+    <img src="Python Code/Asset/icon/game.jpg" alt="Banner" width="300" height="300">
 </div>
 
 # Language Journey - Quiz & Maze Game
